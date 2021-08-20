@@ -91,6 +91,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    //decrypting or unserialize data pass from parent components [OtherUser.vue]
     unserializeUserData: function unserializeUserData() {
       return JSON.parse(atob(this.data));
     }

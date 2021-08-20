@@ -74,9 +74,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    //encrypting or serialize passing data to child components [OtherUserDetails.vue]' for security purposes
     serializeUserData: function serializeUserData(data) {
       return btoa(JSON.stringify(data));
     },
+    //get all users list from user table
     retrieveUsers: function retrieveUsers() {
       var _this = this;
 
@@ -84,6 +86,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this.users = response.data.data;
       });
     },
+    //search user lists
     searchForUser: function searchForUser() {
       this.search(this);
     },

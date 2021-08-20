@@ -93,6 +93,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    //retrieve and display all user pokemon likes
     MyPokemonLikes: function MyPokemonLikes() {
       var _this = this;
 
@@ -119,6 +120,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    //retrieve and display all user pokemon dislikes
     myPokemonDislikes: function myPokemonDislikes() {
       var _this2 = this;
 

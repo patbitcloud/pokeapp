@@ -3989,6 +3989,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    //update profile information
     submitProfileForm: function submitProfileForm() {
       var _this = this;
 
@@ -4034,6 +4035,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[0, 9, 13, 15]]);
       }))();
     },
+    //update profile password
     submitPasswordForm: function submitPasswordForm() {
       var _this2 = this;
 
@@ -4073,6 +4075,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, null, [[0, 9]]);
       }))();
     },
+    //validation form
     hasFormError: function hasFormError(form, field) {
       var hasProperty = form.errors.hasOwnProperty(field);
       return {

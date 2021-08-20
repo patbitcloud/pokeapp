@@ -25,36 +25,23 @@ class UserPokemonDislikeController extends Controller
         $message = ['message' => 'Pokemon disliked.'];
 
         $checkLikePokemon = UserPokemonLike::where([['user_id', $authID], ['pokemon', $validated['name']]]); //check user pokemon likes exists
-
-        if ($checkLikePokemon->exists() === true) {
-
-            $this->insertDislikedPokemon($validated, $checkLikePokemon);
-
-            return response()->json($message);
-        }
-
         $limitReached = UserPokemonDislike::where('user_id', $authID)->count() >= $this->limit; //check dislikes limits
 
-        if ($limitReached === false) {
+        if ($checkLikePokemon->exists() === true || $limitReached === false) {
 
-            $this->insertDislikedPokemon($validated, $checkLikePokemon);
+            DB::transaction(function () use ($validated, $checkLikePokemon) {
+                $checkLikePokemon->delete();
+
+                auth()->user()->dislikedPokemon()->create([
+                    'pokemon' => $validated['name'],
+                    'pokemon_url' => $validated['url']
+                ]);
+            });
 
             return response()->json($message);
         }
 
         return response()->json(['message' => 'Pokemon dislikes limit reached.'], 422);
-    }
-
-    private function insertDislikedPokemon($validated, $checkLikePokemon)
-    {
-        DB::transaction(function () use ($validated, $checkLikePokemon) {
-            $checkLikePokemon->delete();
-
-            auth()->user()->dislikedPokemon()->create([
-                'pokemon' => $validated['name'],
-                'pokemon_url' => $validated['url']
-            ]);
-        });
     }
 
     //get user dislikes pokemons

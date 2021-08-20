@@ -90,11 +90,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    //save to user_pokemon_likes table
     addToLikes: function addToLikes(_ref) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var name, url, _yield$http$post, data;
+        var name, url, _yield$http$post, _data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -110,11 +111,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 _yield$http$post = _context.sent;
-                data = _yield$http$post.data;
+                _data = _yield$http$post.data;
 
                 _this.init();
 
-                alert(data.message);
+                alert(_data.message);
                 _context.next = 13;
                 break;
 
@@ -134,11 +135,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[1, 10]]);
       }))();
     },
+    //save to user_pokemon_dislikes table
     addToDislikes: function addToDislikes(_ref2) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var name, url, _yield$http$post2, data;
+        var name, url, _yield$http$post2, _data2;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
@@ -154,11 +156,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 _yield$http$post2 = _context2.sent;
-                data = _yield$http$post2.data;
+                _data2 = _yield$http$post2.data;
 
                 _this2.init();
 
-                alert(data.message);
+                alert(_data2.message);
                 _context2.next = 13;
                 break;
 
@@ -178,6 +180,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, null, [[1, 10]]);
       }))();
     },
+    //pagination previous page button
     previousPage: function previousPage() {
       var _this3 = this;
 
@@ -212,6 +215,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
+    //pagination next page button
     nextPage: function nextPage() {
       var _this4 = this;
 
@@ -246,26 +250,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
+    //search pokemon area (not finished)
     searchForPokemon: function searchForPokemon() {
       this.search(this);
     },
     search: (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)( /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(vm) {
-        var _yield$http$get3, data;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
-                return _utils_http__WEBPACK_IMPORTED_MODULE_4__.default.get("/pokemon/pokemon-name?search=".concat(vm.searchPokemon));
-
-              case 2:
-                _yield$http$get3 = _context5.sent;
-                data = _yield$http$get3.data;
+                // const { data } = await http.get(
+                //   `/pokemon/pokemon-name?search=${vm.searchPokemon}`
+                // )
                 vm.pokemons = data.data;
 
-              case 5:
+              case 1:
               case "end":
                 return _context5.stop();
             }
@@ -277,11 +277,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref3.apply(this, arguments);
       };
     }(), 250),
+    //retrieve and display all pokemon data from api
     retrievePokemon: function retrievePokemon() {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-        var _yield$http$get4, data, results, next, previous, count;
+        var _yield$http$get3, data, results, next, previous, count;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
@@ -291,8 +292,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _utils_http__WEBPACK_IMPORTED_MODULE_4__.default.get('https://pokeapi.co/api/v2/pokemon');
 
               case 2:
-                _yield$http$get4 = _context6.sent;
-                data = _yield$http$get4.data;
+                _yield$http$get3 = _context6.sent;
+                data = _yield$http$get3.data;
                 results = data.results, next = data.next, previous = data.previous, count = data.count;
                 _this5.pokemons = results;
                 _this5.next = next;
@@ -308,11 +309,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee6);
       }))();
     },
+    //emit function on user likes and dislikes button
     retrieveUserPokemon: function retrieveUserPokemon() {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
-        var _yield$http$get5, data, likedPokemons, dislikedPokemons;
+        var _yield$http$get4, data, likedPokemons, dislikedPokemons;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
           while (1) {
@@ -322,8 +324,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _utils_http__WEBPACK_IMPORTED_MODULE_4__.default.get('/pokemon/user');
 
               case 2:
-                _yield$http$get5 = _context7.sent;
-                data = _yield$http$get5.data;
+                _yield$http$get4 = _context7.sent;
+                data = _yield$http$get4.data;
                 likedPokemons = data.likedPokemons, dislikedPokemons = data.dislikedPokemons;
                 _this6.likedPokemons = likedPokemons;
                 _this6.dislikedPokemons = dislikedPokemons;
